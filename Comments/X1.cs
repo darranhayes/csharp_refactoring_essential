@@ -14,9 +14,8 @@ public class X1
         return sum;
     }
 
-    static int Square(int n)
+    private static int Square(int n)
     {
-        // Return square of input
         return n * n;
     }
 }
