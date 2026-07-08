@@ -54,24 +54,4 @@ public class Forecast
     {
         return windSpeed;
     }
-
-    public bool IsMorning()
-    {
-        return period == "morning";
-    }
-
-    public bool IsAfternoon()
-    {
-        return period == "afternoon";
-    }
-
-    public bool IsEvening()
-    {
-        return period == "evening";
-    }
-
-    public bool IsNight()
-    {
-        return period == "night";
-    }
 }
