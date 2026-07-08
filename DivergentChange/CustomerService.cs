@@ -34,11 +34,29 @@ public class LoyaltyService
     }
 }
 
+public class AccountStatusService
+{
+    public string DetermineAccountStatus(int daysSinceLastLogin)
+    {
+        if (daysSinceLastLogin > 365)
+        {
+            return "INACTIVE";
+        }
+        else if (daysSinceLastLogin > 30)
+        {
+            return "DORMANT";
+        }
+
+        return "ACTIVE";
+    }
+}
+
 public class CustomerService
 {
     private readonly EmailValidator _emailValidator = new EmailValidator();
     private readonly CustomerDisplayFormatter _customerDisplayFormatter = new CustomerDisplayFormatter();
     private readonly LoyaltyService _loyaltyService = new LoyaltyService();
+    private readonly AccountStatusService _accountStatusService = new AccountStatusService();
 
     public bool IsValidEmail(string email)
     {
@@ -57,15 +75,6 @@ public class CustomerService
 
     public string DetermineAccountStatus(int daysSinceLastLogin)
     {
-        if (daysSinceLastLogin > 365)
-        {
-            return "INACTIVE";
-        }
-        else if (daysSinceLastLogin > 30)
-        {
-            return "DORMANT";
-        }
-
-        return "ACTIVE";
+        return _accountStatusService.DetermineAccountStatus(daysSinceLastLogin);
     }
 }
