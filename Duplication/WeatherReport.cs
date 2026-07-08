@@ -40,7 +40,8 @@ public class WeatherReport
 
     private static string FormatForecastReportLine(string timePeriod, string temperature, Forecast forecast)
     {
-        return timePeriod + temperature + "°C, "
+        var formattedTimePeriod = System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(forecast.GetPeriod());
+        return formattedTimePeriod + ": " + temperature + "°C, "
                + forecast.GetCondition() + ", wind " + forecast.GetWindSpeed() + "km/h";
     }
 }
