@@ -8,16 +8,15 @@ public class X1
 
         for (int i = lowerBound; i <= upperBound; i++)
         {
-            // Add square of each number in the range
             sum += Square(i);
         }
 
         return sum;
     }
 
-    static int Square(int k)
+    static int Square(int n)
     {
         // Return square of input
-        return k * k;
+        return n * n;
     }
 }
