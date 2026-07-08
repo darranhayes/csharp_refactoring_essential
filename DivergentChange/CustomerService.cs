@@ -3,7 +3,7 @@
 using System;
 using System.Text.RegularExpressions;
 
-public class CustomerService
+public class EmailValidator
 {
     public bool IsValidEmail(string email)
     {
@@ -16,15 +16,43 @@ public class CustomerService
             email,
             @"^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$");
     }
+}
 
+public class CustomerDisplayFormatter
+{
     public string FormatDisplayName(string firstName, string lastName)
     {
         return firstName.Trim() + " " + lastName.Trim().ToUpper();
     }
+}
 
+public class LoyaltyService
+{
     public int CalculateLoyaltyPoints(int numberOfPurchases)
     {
         return numberOfPurchases * 10;
+    }
+}
+
+public class CustomerService
+{
+    private readonly EmailValidator _emailValidator = new EmailValidator();
+    private readonly CustomerDisplayFormatter _customerDisplayFormatter = new CustomerDisplayFormatter();
+    private readonly LoyaltyService _loyaltyService = new LoyaltyService();
+
+    public bool IsValidEmail(string email)
+    {
+        return _emailValidator.IsValidEmail(email);
+    }
+
+    public string FormatDisplayName(string firstName, string lastName)
+    {
+        return _customerDisplayFormatter.FormatDisplayName(firstName, lastName);
+    }
+
+    public int CalculateLoyaltyPoints(int numberOfPurchases)
+    {
+        return _loyaltyService.CalculateLoyaltyPoints(numberOfPurchases);
     }
 
     public string DetermineAccountStatus(int daysSinceLastLogin)
