@@ -2,7 +2,7 @@
 
 public class X1
 {
-    public static int M(int lowerBound, int upperBound)
+    public static int SumOfSquares(int lowerBound, int upperBound)
     {
         int sum = 0;
 
