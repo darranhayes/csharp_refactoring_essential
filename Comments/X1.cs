@@ -9,14 +9,13 @@ public class X1
         for (int i = lowerBound; i <= upperBound; i++)
         {
             // Add square of each number in the range
-            sum += N(i);
+            sum += Square(i);
         }
 
-        // Return accumulated sum
         return sum;
     }
 
-    static int N(int k)
+    static int Square(int k)
     {
         // Return square of input
         return k * k;
