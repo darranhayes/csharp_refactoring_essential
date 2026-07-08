@@ -6,7 +6,7 @@ using NUnit.Framework;
 public class MathsTests
 {
     [Test]
-    public void TestSumOfSquares()
+    public void TestSumOfSquaresForARange()
     {
         int lowerBound = 7;
         int upperBound = 12;
@@ -17,7 +17,7 @@ public class MathsTests
             expected += i * i;
         }
 
-        int actual = Maths.SumOfSquares(lowerBound, upperBound);
+        int actual = Maths.SumOfSquaresForARange(lowerBound, upperBound);
 
         Assert.That(actual, Is.EqualTo(expected));
     }

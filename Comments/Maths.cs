@@ -2,7 +2,7 @@
 
 public class Maths
 {
-    public static int SumOfSquares(int lowerBound, int upperBound)
+    public static int SumOfSquaresForARange(int lowerBound, int upperBound)
     {
         int sum = 0;
 
