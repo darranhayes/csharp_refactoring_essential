@@ -10,18 +10,14 @@ public class WeatherReport
         foreach (Forecast forecast in forecasts)
         {
             string temperature = forecast.GetTemperature().ToString("0.0");
+            string formattedTimePeriod = System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(forecast.GetPeriod());
 
-            string line = FormatForecastReportLine(temperature, forecast);
+            string line = formattedTimePeriod + ": " + temperature + "°C, "
+                          + forecast.GetCondition() + ", wind " + forecast.GetWindSpeed() + "km/h";
+
             output.Add(line);
 
         }
-    }
-
-    private static string FormatForecastReportLine(string temperature, Forecast forecast)
-    {
-        var formattedTimePeriod = System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(forecast.GetPeriod());
-        return formattedTimePeriod + ": " + temperature + "°C, "
-               + forecast.GetCondition() + ", wind " + forecast.GetWindSpeed() + "km/h";
     }
 }
 
