@@ -14,34 +14,43 @@ public class Order
     public bool Fragile { get; set; }
 }
 
-public class ShippingCalculator
+public class OrderService
 {
     private readonly HttpClient _httpClient = new HttpClient();
 
+    public Order? GetOrder(int orderId)
+    {
+        var url = $"https://codemanship.co.uk/api/orders.php?orderId={orderId}";
+
+        var response = _httpClient
+            .GetAsync(url)
+            .GetAwaiter()
+            .GetResult();
+
+        response.EnsureSuccessStatusCode();
+
+        var json = response.Content
+            .ReadAsStringAsync()
+            .GetAwaiter()
+            .GetResult();
+
+        var options = new JsonSerializerOptions
+        {
+            PropertyNameCaseInsensitive = true
+        };
+            
+        var order = JsonSerializer.Deserialize<Order>(json, options);
+        return order;
+    }
+}
+
+public class ShippingCalculator
+{
     public double CalculateShipping(int orderId)
     {
         try
         {
-            var url = $"https://codemanship.co.uk/api/orders.php?orderId={orderId}";
-
-            var response = _httpClient
-                .GetAsync(url)
-                .GetAwaiter()
-                .GetResult();
-
-            response.EnsureSuccessStatusCode();
-
-            var json = response.Content
-                .ReadAsStringAsync()
-                .GetAwaiter()
-                .GetResult();
-
-            var options = new JsonSerializerOptions
-            {
-                PropertyNameCaseInsensitive = true
-            };
-            
-            var order = JsonSerializer.Deserialize<Order>(json, options);
+            var order = _orderService.GetOrder(orderId);
 
             if (order == null)
                 throw new Exception("Failed to deserialize order");
@@ -68,5 +77,7 @@ public class ShippingCalculator
             return -1;
         }
     }
+
+    private readonly OrderService _orderService = new OrderService();
 }
 
