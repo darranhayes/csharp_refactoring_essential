@@ -16,7 +16,6 @@ public class WeatherReport
                           + forecast.GetCondition() + ", wind " + forecast.GetWindSpeed() + "km/h";
 
             output.Add(line);
-
         }
     }
 }
