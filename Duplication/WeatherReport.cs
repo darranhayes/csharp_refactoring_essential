@@ -60,6 +60,11 @@ public class Forecast
         this.windSpeed = windSpeed;
     }
 
+    public string GetPeriod()
+    {
+        return period;
+    }
+
     public double GetTemperature()
     {
         return temperature;
