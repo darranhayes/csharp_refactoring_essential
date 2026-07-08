@@ -4,17 +4,16 @@ public class X1
 {
     public static int M(int lowerBound, int upperBound)
     {
-        int p = 0;
+        int sum = 0;
 
-        // Iterate from lower bound (q) to upper bound (z)
         for (int i = lowerBound; i <= upperBound; i++)
         {
             // Add square of each number in the range
-            p += N(i);
+            sum += N(i);
         }
 
         // Return accumulated sum
-        return p;
+        return sum;
     }
 
     static int N(int k)
