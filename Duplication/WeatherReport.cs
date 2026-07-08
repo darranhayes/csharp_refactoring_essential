@@ -10,35 +10,42 @@ public class WeatherReport
         foreach (Forecast forecast in forecasts)
         {
             string temperature = forecast.GetTemperature().ToString("0.0");
+            string timePeriod;
 
             if (forecast.IsMorning())
             {
-                string line = "Morning: " + temperature + "°C, "
-                              + forecast.GetCondition() + ", wind " + forecast.GetWindSpeed() + "km/h";
+                timePeriod = "Morning: ";
+                string line = FormatForecastReportLine(timePeriod, temperature, forecast);
                 output.Add(line);
             }
 
             if (forecast.IsAfternoon())
             {
-                string line = "Afternoon: " + temperature + "°C, "
-                              + forecast.GetCondition() + ", wind " + forecast.GetWindSpeed() + "km/h";
+                timePeriod = "Afternoon: ";
+                string line = FormatForecastReportLine(timePeriod, temperature, forecast);
                 output.Add(line);
             }
 
             if (forecast.IsEvening())
             {
-                string line = "Evening: " + temperature + "°C, "
-                              + forecast.GetCondition() + ", wind " + forecast.GetWindSpeed() + "km/h";
+                timePeriod = "Evening: ";
+                string line = FormatForecastReportLine(timePeriod, temperature, forecast);
                 output.Add(line);
             }
 
             if (forecast.IsNight())
             {
-                string line = "Night: " + temperature + "°C, "
-                              + forecast.GetCondition() + ", wind " + forecast.GetWindSpeed() + "km/h";
+                timePeriod = "Night: ";
+                string line = FormatForecastReportLine(timePeriod, temperature, forecast);
                 output.Add(line);
             }
         }
+    }
+
+    private static string FormatForecastReportLine(string timePeriod, string temperature, Forecast forecast)
+    {
+        return timePeriod + temperature + "°C, "
+               + forecast.GetCondition() + ", wind " + forecast.GetWindSpeed() + "km/h";
     }
 }
 
