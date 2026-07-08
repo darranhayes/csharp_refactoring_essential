@@ -3,10 +3,10 @@
 using NUnit.Framework;
 
 [TestFixture]
-public class X1Test
+public class MathsTests
 {
     [Test]
-    public void T1()
+    public void TestSumOfSquares()
     {
         int lowerBound = 7;
         int upperBound = 12;
