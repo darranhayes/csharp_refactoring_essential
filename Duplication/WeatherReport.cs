@@ -10,35 +10,31 @@ public class WeatherReport
         foreach (Forecast forecast in forecasts)
         {
             string temperature = forecast.GetTemperature().ToString("0.0");
-            string timePeriod;
+            string timePeriod = "";
 
             if (forecast.IsMorning())
             {
                 timePeriod = "Morning: ";
-                string line = FormatForecastReportLine(timePeriod, temperature, forecast);
-                output.Add(line);
             }
 
             if (forecast.IsAfternoon())
             {
                 timePeriod = "Afternoon: ";
-                string line = FormatForecastReportLine(timePeriod, temperature, forecast);
-                output.Add(line);
             }
 
             if (forecast.IsEvening())
             {
                 timePeriod = "Evening: ";
-                string line = FormatForecastReportLine(timePeriod, temperature, forecast);
-                output.Add(line);
             }
 
             if (forecast.IsNight())
             {
                 timePeriod = "Night: ";
-                string line = FormatForecastReportLine(timePeriod, temperature, forecast);
-                output.Add(line);
             }
+
+            string line = FormatForecastReportLine(timePeriod, temperature, forecast);
+            output.Add(line);
+
         }
     }
 
